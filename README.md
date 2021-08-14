@@ -6,7 +6,7 @@ Letmeask is a room management app, whose functionality is to send or receive que
 # Getting Started with Create React App / Nlw - together
 
 - first class :heavy_check_mark:
-- second class: -
+- second class :heavy_check_mark:
 
 ## Learn More
 
