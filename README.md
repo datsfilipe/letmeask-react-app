@@ -7,6 +7,7 @@ Letmeask is a room management app, whose functionality is to send or receive que
 
 - first class :heavy_check_mark:
 - second class :heavy_check_mark:
+- third class :heavy_check_mark:
 
 ## Learn More
 
