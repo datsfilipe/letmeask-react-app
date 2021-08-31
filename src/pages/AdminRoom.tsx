@@ -5,13 +5,13 @@ import deleteImg from '../assets/images/delete.svg';
 import checkImg from '../assets/images/check.svg';
 import answerImg from '../assets/images/answer.svg';
 
-import { Button } from '../components/Button';
-import { Question } from '../components/Question';
-import { RoomCode } from '../components/RoomCode';
+import { Button } from '../components/Button/index';
+import { Question, FooterButton } from '../components/Question/index';
+import { RoomCode } from '../components/RoomCode/index';
 // import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 
-import '../styles/room.scss';
+import { Header, Content, Main, RoomTitle, H1, Span, QuestionsList } from '../styles/room';
 import { database } from '../services/firebase';
 
 type RoomParams = {
@@ -56,8 +56,8 @@ export function AdminRoom() {
 
   return (
     <div id="page-room">
-      <header>
-        <div className="content">
+      <Header>
+        <Content className="content">
           <img src={logoImg} alt="Letmeask" />
           <div>
             <RoomCode code={params.id} />
@@ -65,15 +65,15 @@ export function AdminRoom() {
               Encerrar sala
             </Button>
           </div>
-        </div>
-      </header>
-      <main>
-        <div className="room-title">
-          <h1>Sala {title}</h1>
-          {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
-        </div>
+        </Content>
+      </Header>
+      <Main>
+        <RoomTitle className="room-title">
+          <H1>Sala {title}</H1>
+          {questions.length > 0 && <Span>{questions.length} pergunta(s)</Span>}
+        </RoomTitle>
 
-        <div className="question-list">
+        <QuestionsList>
           {questions.map((question) => {
             return (
               <Question
@@ -85,31 +85,31 @@ export function AdminRoom() {
               >
                 {!question.isAnswered && (
                   <>
-                    <button
+                    <FooterButton
                       type="button"
                       onClick={() => handleCheckQuestionAsAnswered(question.id)}
                     >
                       <img src={checkImg} alt="Marcar pergunta como respondida" />
-                    </button>
-                    <button
+                    </FooterButton>
+                    <FooterButton
                       type="button"
                       onClick={() => handleHighlightQuestion(question.id)}
                     >
                       <img src={answerImg} alt="Dar destaque à pergunta" />
-                    </button>
+                    </FooterButton>
                   </>
                 )}
-                <button
+                <FooterButton
                   type="button"
                   onClick={() => handleDeleteQuestion(question.id)}
                 >
                   <img src={deleteImg} alt="Remover pergunta" />
-                </button>
+                </FooterButton>
               </Question>
             );
           })}
-        </div>
-      </main>
+        </QuestionsList>
+      </Main>
     </div>
   );
 }
