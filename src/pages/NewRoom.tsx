@@ -4,7 +4,7 @@ import { FormEvent, useState } from 'react';
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 
-import '../styles/auth.scss';
+import { Container, Aside, Image, Strong, Paragraph, Main, MainContent, Form, Input } from '../styles/auth';
 import { Button } from '../components/Button';
 import { database } from '../services/firebase';
 import { useAuth } from '../hooks/useAuth';
@@ -31,18 +31,18 @@ export function NewRoom() {
   };
 
   return (
-    <div id="page-auth">
-      <aside>
-        <img src = {illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
-        <strong>Crie salas de Q&amp;A ao-vivo</strong>
-        <p>Tire as dúvidas da sua audiência em tempo real</p>
-      </aside>
-      <main>
-        <div className="main-content">
-          <img src={logoImg} alt="letmeask" />
+    <Container id="page-auth">
+      <Aside>
+        <Image src = {illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
+        <Strong>Crie salas de Q&amp;A ao-vivo</Strong>
+        <Paragraph>Tire as dúvidas da sua audiência em tempo real</Paragraph>
+      </Aside>
+      <Main>
+        <MainContent className="main-content">
+          <Image src={logoImg} alt="letmeask" />
           <h2>Criar uma nova sala</h2>
-          <form onSubmit = {handleCreateRoom}>
-            <input
+          <Form onSubmit = {handleCreateRoom}>
+            <Input
             type="text"
             placeholder="Nome da sala"
             onChange = {event => setNewRoom(event.target.value)}
@@ -51,10 +51,10 @@ export function NewRoom() {
             <Button type="submit">
               Criar sala
             </Button>
-          </form>
+          </Form>
           <p>Quer entrar em uma sala existente? <Link to="/">clique aqui</Link> </p>
-        </div>
-      </main>
-    </div>
+        </MainContent>
+      </Main>
+    </Container>
   )
 };

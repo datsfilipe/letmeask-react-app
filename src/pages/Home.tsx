@@ -4,8 +4,8 @@ import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 import googleIconImg from '../assets/images/google-icon.svg';
 
-import '../styles/auth.scss';
-import { Button } from '../components/Button';
+import { Container, Aside, Image, Strong, Paragraph, Main, MainContent, Form, Input, AuthButton, ImageButton, Separator } from '../styles/auth';
+import { Button } from '../components/Button/index';
 import { useAuth } from '../hooks/useAuth';
 import { FormEvent, useState } from 'react';
 import { database } from '../services/firebase';
@@ -45,22 +45,22 @@ export function Home() {
   }
 
   return (
-    <div id="page-auth">
-      <aside>
-        <img src = {illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
-        <strong>Crie salas de Q&amp;A ao-vivo</strong>
-        <p>Tire as dúvidas da sua audiência em tempo real</p>
-      </aside>
-      <main>
-        <div className="main-content">
-          <img src={logoImg} alt="letmeask" />
-          <button onClick={handleCreateRoom} className="create-room">
-            <img src={googleIconImg} alt="logo do Google" />
+    <Container id="page-auth">
+      <Aside>
+        <Image src = {illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
+        <Strong>Crie salas de Q&amp;A ao-vivo</Strong>
+        <Paragraph>Tire as dúvidas da sua audiência em tempo real</Paragraph>
+      </Aside>
+      <Main>
+        <MainContent className="main-content">
+          <Image src={logoImg} alt="letmeask" />
+          <AuthButton onClick={handleCreateRoom} className="create-room">
+            <ImageButton src={googleIconImg} alt="logo do Google" />
             Crie sua sala com Google
-          </button>
-          <div className="separator">ou entre em uma sala</div>
-          <form onSubmit={handleJoinRoom}>
-            <input
+          </AuthButton>
+          <Separator className="separator">ou entre em uma sala</Separator>
+          <Form onSubmit={handleJoinRoom}>
+            <Input
             type="text"
             placeholder="Digite o código da sala"
             onChange={event => setRoomCode(event.target.value)}
@@ -69,9 +69,9 @@ export function Home() {
             <Button type="submit">
               Entrar na sala
             </Button>
-          </form>
-        </div>
-      </main>
-    </div>
+          </Form>
+        </MainContent>
+      </Main>
+    </Container>
   )
 };
