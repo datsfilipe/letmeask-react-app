@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import '../styles/question.scss';
 import classnames from 'classnames';
+import { Container, Paragraph, Footer, Div, Image, FooterButton, Span } from './style';
 
 type QuestionProps = {
   content: string;
@@ -14,26 +14,28 @@ type QuestionProps = {
 }
 
 export function Question({
-  content, 
+  content,
   author,
   children,
   isAnswered = false,
   isHighlighted = false,
 }: QuestionProps) {
   return (
-    <div className={classnames(
+    <Container className={classnames(
       'question',
       { answered: isAnswered },
       { highlighted: isHighlighted && !isAnswered}
       )}>
-      <p>{content}</p>
-      <footer>
-        <div className="user-info">
-          <img src={author.avatar} alt={author.name} />
-          <span>{author.name}</span>
-        </div>
+      <Paragraph>{content}</Paragraph>
+      <Footer>
+        <Div className="user-info">
+          <Image src={author.avatar} alt={author.name} />
+          <Span>{author.name}</Span>
+        </Div>
         <div>{children}</div>
-      </footer>
-    </div>
+      </Footer>
+    </Container>
   )
 }
+
+export { FooterButton };
