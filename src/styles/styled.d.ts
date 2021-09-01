@@ -1,8 +1,12 @@
 import 'styled-components';
 
-import theme from './themes/theme';
-
-export type Theme = typeof theme;
+export type Theme = {
+  theme: {
+    background: string;
+  color: string;
+  },
+  switchTheme?: (theme: Theme) => void;
+};
 
 declare module 'styled-components' {
   export interface DefaultTheme extends Theme {}
