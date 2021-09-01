@@ -2,17 +2,22 @@ import { Link, useHistory } from 'react-router-dom';
 import { FormEvent, useState } from 'react';
 
 import illustrationImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg';
 
 import { Container, Aside, Image, Strong, Paragraph, Main, MainContent, Form, Input } from '../styles/auth';
 import { Button } from '../components/Button';
 import { database } from '../services/firebase';
 import { useAuth } from '../hooks/useAuth';
+import { useTheme } from 'styled-components';
+import { useLogo } from '../hooks/useLogo';
+import light from '../styles/themes/theme_light';
+import dark from '../styles/themes/theme_dark';
 
 export function NewRoom() {
   const { user } = useAuth();
   const history = useHistory();
   const [ newRoom, setNewRoom ] = useState(' ');
+  const { theme, switchTheme } = useTheme();
+  const { logo, setLogo, logoDark, logoLight } = useLogo();
 
   async function handleCreateRoom(event: FormEvent) {
     event.preventDefault();
@@ -30,6 +35,18 @@ export function NewRoom() {
     history.push(`/rooms/${firebaseRoom.key}`);
   };
 
+  async function handleThemeChange() {
+    if (theme === light) {
+      switchTheme(dark);
+      setLogo(logoDark);
+    } else if (theme === dark) {
+      switchTheme(light);
+      setLogo(logoLight);
+    } else {
+      throw new Error('Unknown theme / cannot provide logo');
+    }
+  }
+
   return (
     <Container id="page-auth">
       <Aside>
@@ -39,7 +56,8 @@ export function NewRoom() {
       </Aside>
       <Main>
         <MainContent className="main-content">
-          <Image src={logoImg} alt="letmeask" />
+          <Button onClick={handleThemeChange}>Change theme</Button>
+          <Image src={logo} alt="letmeask" />
           <h2>Criar uma nova sala</h2>
           <Form onSubmit = {handleCreateRoom}>
             <Input

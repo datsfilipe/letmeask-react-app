@@ -1,6 +1,5 @@
 import { useHistory, useParams } from 'react-router-dom';
 
-import logoImg from '../assets/images/logo.svg';
 import deleteImg from '../assets/images/delete.svg';
 import checkImg from '../assets/images/check.svg';
 import answerImg from '../assets/images/answer.svg';
@@ -13,6 +12,10 @@ import { useRoom } from '../hooks/useRoom';
 
 import { Header, Content, Main, RoomTitle, H1, Span, QuestionsList } from '../styles/room';
 import { database } from '../services/firebase';
+import { useTheme } from 'styled-components';
+import { useLogo } from '../hooks/useLogo';
+import light from '../styles/themes/theme_light';
+import dark from '../styles/themes/theme_dark';
 
 type RoomParams = {
   id: string;
@@ -23,6 +26,8 @@ export function AdminRoom() {
   const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
+  const { theme, switchTheme } = useTheme();
+  const { logo, setLogo, logoDark, logoLight } = useLogo();
 
   const { title, questions } = useRoom(roomId);
 
@@ -54,11 +59,24 @@ export function AdminRoom() {
     });
   }
 
+  async function handleThemeChange() {
+    if (theme === light) {
+      switchTheme(dark);
+      setLogo(logoDark);
+    } else if (theme === dark) {
+      switchTheme(light);
+      setLogo(logoLight);
+    } else {
+      throw new Error('Unknown theme / cannot provide logo');
+    }
+  }
+
   return (
     <div id="page-room">
       <Header>
+        <Button onClick={handleThemeChange}>Change theme</Button>
         <Content className="content">
-          <img src={logoImg} alt="Letmeask" />
+          <img src={logo} alt="Letmeask" />
           <div>
             <RoomCode code={params.id} />
             <Button isOutlined onClick={handleEndRoom}>

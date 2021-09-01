@@ -1,15 +1,18 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useTheme } from 'styled-components';
 
-import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button/index';
 import { Question, FooterButton } from '../components/Question/index';
 import { RoomCode } from '../components/RoomCode/index';
 import { useAuth } from '../hooks/useAuth';
+import { useLogo } from '../hooks/useLogo';
 import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
 
 import { Header, Content, Main, RoomTitle, H1, Span, FormFooter, Textarea, UserInfo, QuestionsList } from '../styles/room';
+import dark from '../styles/themes/theme_dark';
+import light from '../styles/themes/theme_light';
 
 type RoomParams = {
   id: string;
@@ -21,6 +24,8 @@ export function Room() {
   const [newQuestion, setNewQuestion] = useState('');
   const roomId = params.id;
   const { title, questions } = useRoom(roomId);
+  const { theme, switchTheme } = useTheme();
+  const { logo, setLogo, logoDark, logoLight } = useLogo();
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
@@ -56,11 +61,24 @@ export function Room() {
     }
   };
 
+  async function handleThemeChange() {
+    if (theme === light) {
+      switchTheme(dark);
+      setLogo(logoDark);
+    } else if (theme === dark) {
+      switchTheme(light);
+      setLogo(logoLight);
+    } else {
+      throw new Error('Unknown theme / cannot provide logo');
+    }
+  }
+
   return (
     <div id="page-room">
       <Header>
+        <Button onClick={handleThemeChange}>Change theme</Button>
         <Content className="content">
-          <img src={logoImg} alt="Letmeask" />
+          <img src={logo} alt="Letmeask" />
           <RoomCode code={params.id} />
         </Content>
       </Header>

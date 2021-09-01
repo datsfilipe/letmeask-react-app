@@ -1,19 +1,25 @@
 import { useHistory } from 'react-router-dom';
 
 import illustrationImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg';
 import googleIconImg from '../assets/images/google-icon.svg';
 
 import { Container, Aside, Image, Strong, Paragraph, Main, MainContent, Form, Input, AuthButton, ImageButton, Separator } from '../styles/auth';
 import { Button } from '../components/Button/index';
 import { useAuth } from '../hooks/useAuth';
+import { useLogo } from '../hooks/useLogo';
 import { FormEvent, useState } from 'react';
 import { database } from '../services/firebase';
+import { useTheme } from 'styled-components';
+
+import light from '../styles/themes/theme_light';
+import dark from '../styles/themes/theme_dark';
 
 export function Home() {
   const history = useHistory();
   const { user, signInWithGoogle } = useAuth();
-  const [roomCode, setRoomCode] =useState('');
+  const [ roomCode, setRoomCode ] = useState('');
+  const { theme, switchTheme } = useTheme();
+  const { logo, setLogo, logoDark, logoLight } = useLogo();
 
   async function handleCreateRoom() {
     if (!user) {
@@ -44,6 +50,18 @@ export function Home() {
     history.push(`/rooms/${roomCode}`);
   }
 
+  async function handleThemeChange() {
+    if (theme === light) {
+      switchTheme(dark);
+      setLogo(logoDark);
+    } else if (theme === dark) {
+      switchTheme(light);
+      setLogo(logoLight);
+    } else {
+      throw new Error('Unknown theme / cannot provide logo');
+    }
+  }
+
   return (
     <Container id="page-auth">
       <Aside>
@@ -53,7 +71,8 @@ export function Home() {
       </Aside>
       <Main>
         <MainContent className="main-content">
-          <Image src={logoImg} alt="letmeask" />
+          <Button onClick={handleThemeChange}>Change theme</Button>
+          <Image src={logo} alt="letmeask" />
           <AuthButton onClick={handleCreateRoom} className="create-room">
             <ImageButton src={googleIconImg} alt="logo do Google" />
             Crie sua sala com Google
