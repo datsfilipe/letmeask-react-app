@@ -7,7 +7,7 @@ import { Container, Aside, Image, Strong, Paragraph, Main, MainContent, Form, In
 import { Button } from '../components/Button';
 import { database } from '../services/firebase';
 import { useAuth } from '../hooks/useAuth';
-import { useTheme } from 'styled-components';
+import { useTheme } from '../hooks/useTheme';
 import { useLogo } from '../hooks/useLogo';
 import light from '../styles/themes/theme_light';
 import dark from '../styles/themes/theme_dark';

@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTheme } from 'styled-components';
+import { useTheme } from '../hooks/useTheme';
 
 import { Button } from '../components/Button/index';
 import { Question, FooterButton } from '../components/Question/index';

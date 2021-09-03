@@ -9,7 +9,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useLogo } from '../hooks/useLogo';
 import { FormEvent, useState } from 'react';
 import { database } from '../services/firebase';
-import { useTheme } from 'styled-components';
+import { useTheme } from '../hooks/useTheme';
 
 import light from '../styles/themes/theme_light';
 import dark from '../styles/themes/theme_dark';

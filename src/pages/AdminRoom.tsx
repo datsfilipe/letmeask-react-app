@@ -12,7 +12,7 @@ import { useRoom } from '../hooks/useRoom';
 
 import { Header, Content, Main, RoomTitle, H1, Span, QuestionsList } from '../styles/room';
 import { database } from '../services/firebase';
-import { useTheme } from 'styled-components';
+import { useTheme } from '../hooks/useTheme';
 import { useLogo } from '../hooks/useLogo';
 import light from '../styles/themes/theme_light';
 import dark from '../styles/themes/theme_dark';
