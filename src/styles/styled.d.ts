@@ -7,6 +7,8 @@ import 'styled-components';
 export type Theme = {
   background: string;
   color: string;
+  borderBottom: string;
+  textareaBg: string;
 }
 
 declare module 'styled-components' {
