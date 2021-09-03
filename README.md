@@ -11,7 +11,7 @@
 ### Screenshot
 
 <p align="center" shadow="8px">
-  <img width="600" src="./src/assets/images/screenshot.png">
+  <img width="600" src="./src/assets/images/Screenshot.png">
 </p>
 
 ## Description
