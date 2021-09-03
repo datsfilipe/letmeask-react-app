@@ -1,6 +1,4 @@
 import 'styled-components';
-
-
 import { createContext, ReactNode, useState } from 'react';
 import light from '../styles/themes/theme_light';
 import { Theme } from '../styles/styled';
@@ -14,9 +12,9 @@ type ThemeContextProviderProps = {
   children: ReactNode;
 }
 
-export const ThemeContext = createContext({} as ThemeContextType);
+const ThemeContext = createContext({} as ThemeContextType);
 
-export function ThemeContextProvider (props: ThemeContextProviderProps) {
+function ThemeContextProvider (props: ThemeContextProviderProps) {
   const [theme, setTheme] = useState<Theme>(light);
 
   function switchTheme (theme: Theme) {
@@ -24,8 +22,10 @@ export function ThemeContextProvider (props: ThemeContextProviderProps) {
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, switchTheme } as ThemeContextType} >
+    <ThemeContext.Provider value={{ theme, switchTheme }} >
       {props.children}
     </ThemeContext.Provider>
   );
 }
+
+export { ThemeContextProvider, ThemeContext };
