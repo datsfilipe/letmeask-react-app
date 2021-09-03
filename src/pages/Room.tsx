@@ -13,6 +13,7 @@ import { database } from '../services/firebase';
 import { Header, Content, Main, RoomTitle, H1, Span, FormFooter, Textarea, UserInfo, QuestionsList } from '../styles/room';
 import dark from '../styles/themes/theme_dark';
 import light from '../styles/themes/theme_light';
+import { ButtonToggle } from '../components/ChangeThemeButton';
 
 type RoomParams = {
   id: string;
@@ -76,7 +77,9 @@ export function Room() {
   return (
     <div id="page-room">
       <Header>
-        <Button onClick={handleThemeChange}>Change theme</Button>
+        <ButtonToggle
+          onClick={handleThemeChange}
+        />
         <Content className="content">
           <img src={logo} alt="Letmeask" />
           <RoomCode code={params.id} />

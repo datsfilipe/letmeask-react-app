@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Header = styled.header`
   padding: 24px;
-  border-bottom: 1px solid #e2e2e2;
+  border-bottom: 1px solid ${props => props.theme.borderBottom};
 `;
 
 const Content = styled.div`
@@ -31,7 +31,8 @@ const Textarea = styled.textarea`
   border: 0;
   padding: 16px;
   border-radius: 0px;
-  background-color: #fefefe;
+  background-color: ${props => props.theme.textareaBg};
+  color: ${props => props.theme.color};
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   resize: vertical;
   min-height: 130px;

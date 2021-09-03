@@ -5,7 +5,8 @@ const Button = styled.button`
   border-radius: 8px;
   overflow: hidden;
 
-  background-color: #fff;
+  background-color: ${props => props.theme.background};
+  color: ${props => props.theme.color};
   border: 1px solid #835afd;
   cursor: pointer;
 

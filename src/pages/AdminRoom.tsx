@@ -16,6 +16,7 @@ import { useTheme } from '../hooks/useTheme';
 import { useLogo } from '../hooks/useLogo';
 import light from '../styles/themes/theme_light';
 import dark from '../styles/themes/theme_dark';
+import { ButtonToggle } from '../components/ChangeThemeButton/index';
 
 type RoomParams = {
   id: string;
@@ -30,6 +31,8 @@ export function AdminRoom() {
   const { logo, setLogo, logoDark, logoLight } = useLogo();
 
   const { title, questions } = useRoom(roomId);
+
+
 
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
@@ -74,7 +77,9 @@ export function AdminRoom() {
   return (
     <div id="page-room">
       <Header>
-        <Button onClick={handleThemeChange}>Change theme</Button>
+        <ButtonToggle
+          onClick={handleThemeChange}
+        />
         <Content className="content">
           <img src={logo} alt="Letmeask" />
           <div>

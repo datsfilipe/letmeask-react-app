@@ -13,6 +13,7 @@ import { useTheme } from '../hooks/useTheme';
 
 import light from '../styles/themes/theme_light';
 import dark from '../styles/themes/theme_dark';
+import { ButtonToggle } from '../components/ChangeThemeButton';
 
 export function Home() {
   const history = useHistory();
@@ -20,6 +21,7 @@ export function Home() {
   const [ roomCode, setRoomCode ] = useState('');
   const { theme, switchTheme } = useTheme();
   const { logo, setLogo, logoDark, logoLight } = useLogo();
+
 
   async function handleCreateRoom() {
     if (!user) {
@@ -71,7 +73,9 @@ export function Home() {
       </Aside>
       <Main>
         <MainContent className="main-content">
-          <Button onClick={handleThemeChange}>Change theme</Button>
+        <ButtonToggle
+          onClick={handleThemeChange}
+        />
           <Image src={logo} alt="letmeask" />
           <AuthButton onClick={handleCreateRoom} className="create-room">
             <ImageButton src={googleIconImg} alt="logo do Google" />

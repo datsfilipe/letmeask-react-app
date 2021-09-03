@@ -11,6 +11,7 @@ import { useTheme } from '../hooks/useTheme';
 import { useLogo } from '../hooks/useLogo';
 import light from '../styles/themes/theme_light';
 import dark from '../styles/themes/theme_dark';
+import { ButtonToggle } from '../components/ChangeThemeButton';
 
 export function NewRoom() {
   const { user } = useAuth();
@@ -56,7 +57,9 @@ export function NewRoom() {
       </Aside>
       <Main>
         <MainContent className="main-content">
-          <Button onClick={handleThemeChange}>Change theme</Button>
+        <ButtonToggle
+          onClick={handleThemeChange}
+        />
           <Image src={logo} alt="letmeask" />
           <h2>Criar uma nova sala</h2>
           <Form onSubmit = {handleCreateRoom}>
