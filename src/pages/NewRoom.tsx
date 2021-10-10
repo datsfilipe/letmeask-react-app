@@ -13,6 +13,11 @@ import light from '../styles/themes/theme_light';
 import dark from '../styles/themes/theme_dark';
 import { ButtonToggle } from '../components/ChangeThemeButton';
 
+
+import lightModeImg from '../assets/images/light-mode.svg';
+import nightModeImg from '../assets/images/night-mode.svg'
+
+
 export function NewRoom() {
   const { user } = useAuth();
   const history = useHistory();

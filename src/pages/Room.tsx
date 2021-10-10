@@ -15,6 +15,11 @@ import dark from '../styles/themes/theme_dark';
 import light from '../styles/themes/theme_light';
 import { ButtonToggle } from '../components/ChangeThemeButton';
 
+
+import lightModeImg from '../assets/images/light-mode.svg';
+import nightModeImg from '../assets/images/night-mode.svg'
+
+
 type RoomParams = {
   id: string;
 }

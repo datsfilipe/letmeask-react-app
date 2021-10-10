@@ -57,6 +57,12 @@ const MainContent = styled.div`
   > Image {
     align-items: center;
   }
+
+  .theme-button {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+  }
 `;
 
 const Form = styled.form`

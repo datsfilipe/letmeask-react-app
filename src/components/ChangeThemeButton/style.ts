@@ -19,6 +19,7 @@ const ButtonToggleTheme = styled.button`
 
   img {
     margin-right: 8px;
+    width: 35px;
   }
 `;
 
