@@ -8,6 +8,7 @@ import lightModeImg from '../assets/images/light-mode.svg';
 export type ThemeContextType = {
   theme: Theme;
   switchTheme: (theme: Theme, logo: string, buttonImg: string) => void;
+  logo: string;
   buttonImg: string;
 }
 
@@ -19,14 +20,17 @@ const ThemeContext = createContext({} as ThemeContextType);
 
 function ThemeContextProvider (props: ThemeContextProviderProps) {
   const [theme, setTheme] = useState<Theme>(light);
+  const [logo, setLogo] = useState<string>(logoLight);
   const [buttonImg, setButtonImg] = useState<string>(lightModeImg)
 
   function switchTheme (theme: Theme, logo: string, buttonImg: string) {
     setTheme(theme);
+    setLogo(logo);
+    setButtonImg(buttonImg);
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, switchTheme }} >
+    <ThemeContext.Provider value={{ theme, switchTheme, logo, buttonImg }} >
       {props.children}
     </ThemeContext.Provider>
   );

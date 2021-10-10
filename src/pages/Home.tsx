@@ -6,7 +6,6 @@ import googleIconImg from '../assets/images/google-icon.svg';
 import { Container, Aside, Image, Strong, Paragraph, Main, MainContent, Form, Input, AuthButton, ImageButton, Separator } from '../styles/auth';
 import { Button } from '../components/Button/index';
 import { useAuth } from '../hooks/useAuth';
-import { useLogo } from '../hooks/useLogo';
 import { FormEvent, useState } from 'react';
 import { database } from '../services/firebase';
 import { useTheme } from '../hooks/useTheme';
@@ -15,6 +14,8 @@ import light from '../styles/themes/theme_light';
 import dark from '../styles/themes/theme_dark';
 import { ButtonToggle } from '../components/ChangeThemeButton';
 
+import logoLight from '../assets/images/logo-light.svg';
+import logoDark from '../assets/images/logo-dark.svg';
 
 import lightModeImg from '../assets/images/light-mode.svg';
 import nightModeImg from '../assets/images/night-mode.svg'
@@ -23,8 +24,7 @@ export function Home() {
   const history = useHistory();
   const { user, signInWithGoogle } = useAuth();
   const [ roomCode, setRoomCode ] = useState('');
-  const { theme, switchTheme } = useTheme();
-  const { logo, setLogo, logoDark, logoLight } = useLogo();
+  const { theme, switchTheme, logo } = useTheme();
 
 
   async function handleCreateRoom() {
@@ -58,11 +58,9 @@ export function Home() {
 
   async function handleThemeChange() {
     if (theme === light) {
-      switchTheme(dark);
-      setLogo(logoDark);
+      switchTheme(dark, logoDark, nightModeImg);
     } else if (theme === dark) {
-      switchTheme(light);
-      setLogo(logoLight);
+      switchTheme(light, logoLight, lightModeImg);
     } else {
       throw new Error('Unknown theme / cannot provide logo');
     }
@@ -77,26 +75,34 @@ export function Home() {
       </Aside>
       <Main>
         <MainContent className="main-content">
-        <ButtonToggle
-          onClick={handleThemeChange}
-        />
-          <Image src={logo} alt="letmeask" />
-          <AuthButton onClick={handleCreateRoom} className="create-room">
-            <ImageButton src={googleIconImg} alt="logo do Google" />
-            Crie sua sala com Google
-          </AuthButton>
-          <Separator className="separator">ou entre em uma sala</Separator>
-          <Form onSubmit={handleJoinRoom}>
-            <Input
-            type="text"
-            placeholder="Digite o código da sala"
-            onChange={event => setRoomCode(event.target.value)}
-            value={roomCode}
-            />
-            <Button type="submit">
-              Entrar na sala
-            </Button>
-          </Form>
+          <ButtonToggle
+            className="theme-button"
+            onClick={handleThemeChange}
+          />
+            <Image src={logo} alt="letmeask" />
+            <AuthButton onClick={handleCreateRoom} className="create-room">
+              <ImageButton src={googleIconImg} alt="logo do Google" />
+              Crie sua sala com Google
+            </AuthButton>
+            <Separator className="separator">ou entre em uma sala</Separator>
+            <Form onSubmit={handleJoinRoom}>
+              <Input
+                type="text"
+                placeholder="Digite o código da sala"
+                onChange={event => setRoomCode(event.target.value)}
+                value={roomCode}
+              />
+              <Button type="submit">
+                Entrar na sala
+              </Button>
+            </Form>
+            <footer>
+              <a href="https://iconscout.com/icons/moon" target="_blank">Moon Icon</a> by <a href="https://iconscout.com/contributors/oviyan">Amoghdesign</a> on <a href="https://iconscout.com">Iconscout</a>
+              /<br />
+              <a href="https://iconscout.com/icons/bright" target="_blank">Bright Icon</a> by <a href="https://iconscout.com/contributors/chamedesign">Chamestudio</a> on <a href="https://iconscout.com">Iconscout</a>
+              /<br />
+              <a href="https://iconscout.com/icons/chat" target="_blank">Chat Icon</a> by <a href="https://iconscout.com/contributors/irfansusanto98" target="_blank">Barudak Lier</a>
+            </footer>
         </MainContent>
       </Main>
     </Container>

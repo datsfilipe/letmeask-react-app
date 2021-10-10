@@ -13,11 +13,12 @@ import { useRoom } from '../hooks/useRoom';
 import { Header, Content, Main, RoomTitle, H1, Span, QuestionsList } from '../styles/room';
 import { database } from '../services/firebase';
 import { useTheme } from '../hooks/useTheme';
-import { useLogo } from '../hooks/useLogo';
 import light from '../styles/themes/theme_light';
 import dark from '../styles/themes/theme_dark';
 import { ButtonToggle } from '../components/ChangeThemeButton/index';
 
+import logoLight from '../assets/images/logo-light.svg';
+import logoDark from '../assets/images/logo-dark.svg';
 
 import lightModeImg from '../assets/images/light-mode.svg';
 import nightModeImg from '../assets/images/night-mode.svg'
@@ -31,8 +32,7 @@ export function AdminRoom() {
   const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
-  const { theme, switchTheme } = useTheme();
-  const { logo, setLogo, logoDark, logoLight } = useLogo();
+  const { theme, switchTheme, logo } = useTheme();
 
   const { title, questions } = useRoom(roomId);
 
@@ -68,11 +68,9 @@ export function AdminRoom() {
 
   async function handleThemeChange() {
     if (theme === light) {
-      switchTheme(dark);
-      setLogo(logoDark);
+      switchTheme(dark, logoDark, nightModeImg);
     } else if (theme === dark) {
-      switchTheme(light);
-      setLogo(logoLight);
+      switchTheme(light, logoLight, lightModeImg);
     } else {
       throw new Error('Unknown theme / cannot provide logo');
     }

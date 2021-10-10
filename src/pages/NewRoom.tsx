@@ -8,11 +8,12 @@ import { Button } from '../components/Button';
 import { database } from '../services/firebase';
 import { useAuth } from '../hooks/useAuth';
 import { useTheme } from '../hooks/useTheme';
-import { useLogo } from '../hooks/useLogo';
 import light from '../styles/themes/theme_light';
 import dark from '../styles/themes/theme_dark';
 import { ButtonToggle } from '../components/ChangeThemeButton';
 
+import logoLight from '../assets/images/logo-light.svg';
+import logoDark from '../assets/images/logo-dark.svg';
 
 import lightModeImg from '../assets/images/light-mode.svg';
 import nightModeImg from '../assets/images/night-mode.svg'
@@ -22,8 +23,7 @@ export function NewRoom() {
   const { user } = useAuth();
   const history = useHistory();
   const [ newRoom, setNewRoom ] = useState(' ');
-  const { theme, switchTheme } = useTheme();
-  const { logo, setLogo, logoDark, logoLight } = useLogo();
+  const { theme, switchTheme, logo } = useTheme();
 
   async function handleCreateRoom(event: FormEvent) {
     event.preventDefault();
@@ -43,11 +43,9 @@ export function NewRoom() {
 
   async function handleThemeChange() {
     if (theme === light) {
-      switchTheme(dark);
-      setLogo(logoDark);
+      switchTheme(dark, logoDark, nightModeImg);
     } else if (theme === dark) {
-      switchTheme(light);
-      setLogo(logoLight);
+      switchTheme(light, logoLight, lightModeImg);
     } else {
       throw new Error('Unknown theme / cannot provide logo');
     }
@@ -56,15 +54,16 @@ export function NewRoom() {
   return (
     <Container id="page-auth">
       <Aside>
-        <Image src = {illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
+        <Image src={illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
         <Strong>Crie salas de Q&amp;A ao-vivo</Strong>
         <Paragraph>Tire as dúvidas da sua audiência em tempo real</Paragraph>
       </Aside>
       <Main>
         <MainContent className="main-content">
-        <ButtonToggle
-          onClick={handleThemeChange}
-        />
+          <ButtonToggle
+            className="theme-button"
+            onClick={handleThemeChange}
+          />
           <Image src={logo} alt="letmeask" />
           <h2>Criar uma nova sala</h2>
           <Form onSubmit = {handleCreateRoom}>
@@ -78,7 +77,7 @@ export function NewRoom() {
               Criar sala
             </Button>
           </Form>
-          <p>Quer entrar em uma sala existente? <Link to="/">clique aqui</Link> </p>
+          <p className="enter-existing-room-label">Quer entrar em uma sala existente? <Link to="/">clique aqui</Link> </p>
         </MainContent>
       </Main>
     </Container>

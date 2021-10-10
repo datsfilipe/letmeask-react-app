@@ -6,7 +6,6 @@ import { Button } from '../components/Button/index';
 import { Question, FooterButton } from '../components/Question/index';
 import { RoomCode } from '../components/RoomCode/index';
 import { useAuth } from '../hooks/useAuth';
-import { useLogo } from '../hooks/useLogo';
 import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
 
@@ -15,6 +14,8 @@ import dark from '../styles/themes/theme_dark';
 import light from '../styles/themes/theme_light';
 import { ButtonToggle } from '../components/ChangeThemeButton';
 
+import logoLight from '../assets/images/logo-light.svg';
+import logoDark from '../assets/images/logo-dark.svg';
 
 import lightModeImg from '../assets/images/light-mode.svg';
 import nightModeImg from '../assets/images/night-mode.svg'
@@ -30,8 +31,7 @@ export function Room() {
   const [newQuestion, setNewQuestion] = useState('');
   const roomId = params.id;
   const { title, questions } = useRoom(roomId);
-  const { theme, switchTheme } = useTheme();
-  const { logo, setLogo, logoDark, logoLight } = useLogo();
+  const { theme, switchTheme, logo } = useTheme();
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
@@ -69,11 +69,9 @@ export function Room() {
 
   async function handleThemeChange() {
     if (theme === light) {
-      switchTheme(dark);
-      setLogo(logoDark);
+      switchTheme(dark, logoDark, nightModeImg);
     } else if (theme === dark) {
-      switchTheme(light);
-      setLogo(logoLight);
+      switchTheme(light, logoLight, lightModeImg);
     } else {
       throw new Error('Unknown theme / cannot provide logo');
     }
