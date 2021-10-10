@@ -1,17 +1,7 @@
 # LETMEASK
 
-<p align="center">
-  <img width="220" src="./src/assets/images/qr-code-scan.svg">
-</p>
-
-<p style="font-size: 13px" align="center">
-  <a href="https://iconscout.com/icons/qr-code-scan" target="_blank">Qr code scan Icon</a> on <a href="https://iconscout.com">Iconscout</a>
-</p>
-
-### Screenshot
-
 <p align="center" shadow="8px">
-  <img width="600" src="./src/assets/images/Screenshot.png">
+  <img width="800" src="./src/assets/images/screenshot.png">
 </p>
 
 ## Description
