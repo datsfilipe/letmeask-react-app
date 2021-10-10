@@ -36,8 +36,3 @@ $ yarn start
 
 # Server will be listening on port 3000
 ```
-### Observations
-
-1. Theme context is complete, but: image logo is not in context, that's one thing to do;
-
-2. Also the button to toggle theme is not styled, which is another thing to do.
