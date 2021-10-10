@@ -54,7 +54,7 @@ const MainContent = styled.div`
   align-items: stretch;
   text-align: center;
 
-  > Image {
+  >Image {
     align-items: center;
   }
 
@@ -62,6 +62,21 @@ const MainContent = styled.div`
     position: absolute;
     top: 20px;
     right: 15px;
+  }
+
+  .enter-existing-room-label {
+    margin-top: 20px;
+
+    a {
+      color: ${props => props.theme.color};
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  h2 {
+    margin-bottom: 20px;
   }
 
   footer {
@@ -111,8 +126,9 @@ const Input = styled.input`
   height: 50px;
   border-radius: 8px;
   padding: 0 16px;
-  background-color: #fff;
-  border: 1px solid #a8a8b3;
+  color: ${props => props.theme.color};
+  background-color: ${props => props.theme.textareaBg};
+  border: 1px solid ${props => props.theme.borderBottom};
 `;
 
 const AuthButton = styled.button`

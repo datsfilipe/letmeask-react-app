@@ -93,7 +93,7 @@ const RoomTitle = styled.div`
 const H1 = styled.h1`
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
-  color: #29292E;
+  color: ${props => props.theme.color};
 `;
 
 const Span = styled.span`
