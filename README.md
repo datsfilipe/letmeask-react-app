@@ -7,7 +7,7 @@
 ## Description
 
 <p align="justify">
-  Letmeask is a room management app, whose functionality is to send or receive questions, participating or been a owner of a room whose creator can see and answer questions based on likes, thus choosing the questions in order of request. All the project was made by other person, I was just following him, the link for the event were project was made is <a href="https://app.rocketseat.com.br/node/mission-react-js" >here</a>.
+  Letmeask is a room management app, whose functionality is to send or receive questions, participating or been a owner of a room whose creator can see and answer questions based on likes, thus choosing the questions in order of request.
 </p>
 
 ### Technologies
