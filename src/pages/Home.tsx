@@ -97,11 +97,19 @@ export function Home() {
               </Button>
             </Form>
             <footer>
-              <a href="https://iconscout.com/icons/moon" target="_blank">Moon Icon</a> by <a href="https://iconscout.com/contributors/oviyan">Amoghdesign</a> on <a href="https://iconscout.com">Iconscout</a>
-              /<br />
-              <a href="https://iconscout.com/icons/bright" target="_blank">Bright Icon</a> by <a href="https://iconscout.com/contributors/chamedesign">Chamestudio</a> on <a href="https://iconscout.com">Iconscout</a>
-              /<br />
-              <a href="https://iconscout.com/icons/chat" target="_blank">Chat Icon</a> by <a href="https://iconscout.com/contributors/irfansusanto98" target="_blank">Barudak Lier</a>
+              <ul>
+                <li>
+                  <a href="https://iconscout.com/icons/moon" target="_blank">Moon Icon</a> by <a href="https://iconscout.com/contributors/oviyan">Amoghdesign</a>
+                </li>
+                |
+                <li>
+                  <a href="https://iconscout.com/icons/bright" target="_blank">Bright Icon</a> by <a href="https://iconscout.com/contributors/chamedesign">Chamestudio</a>
+                </li>
+                |
+                <li>
+                  <a href="https://iconscout.com/icons/chat" target="_blank">Chat Icon</a> by <a href="https://iconscout.com/contributors/irfansusanto98" target="_blank">Barudak Lier</a>
+                </li>
+              </ul>
             </footer>
         </MainContent>
       </Main>

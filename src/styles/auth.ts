@@ -63,6 +63,28 @@ const MainContent = styled.div`
     top: 20px;
     right: 15px;
   }
+
+  footer {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    max-width: 700px;
+    text-align: justify;
+    color: #fefefe;
+    a {
+      color: #fefefe;
+      text-decoration: none;
+      &:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+    }
+    ul {
+      display: flex;
+      list-style: none;
+      gap: 14px;
+    }
+  }
 `;
 
 const Form = styled.form`
