@@ -1,4 +1,4 @@
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import deleteImg from '../assets/images/delete.svg';
 import checkImg from '../assets/images/check.svg';
@@ -29,7 +29,7 @@ type RoomParams = {
 
 export function AdminRoom() {
   // const { user } = useAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const { theme, switchTheme, logo } = useTheme();
@@ -43,7 +43,7 @@ export function AdminRoom() {
       endedAt: new Date(),
     });
 
-    history.push('/');
+    navigate('/');
   }
 
   async function handleDeleteQuestion(questionId: string) {

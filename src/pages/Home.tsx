@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import illustrationImg from '../assets/images/illustration.svg';
 import googleIconImg from '../assets/images/google-icon.svg';
@@ -21,7 +21,7 @@ import lightModeImg from '../assets/images/light-mode.svg';
 import nightModeImg from '../assets/images/night-mode.svg'
 
 export function Home() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { user, signInWithGoogle } = useAuth();
   const [ roomCode, setRoomCode ] = useState('');
   const { theme, switchTheme, logo } = useTheme();
@@ -32,7 +32,7 @@ export function Home() {
       await signInWithGoogle();
     }
 
-    history.push('/rooms/new');
+    navigate('/rooms/new');
   }
 
   async function handleJoinRoom(event: FormEvent) {
@@ -53,7 +53,7 @@ export function Home() {
       return;
     }
 
-    history.push(`/rooms/${roomCode}`);
+    navigate(`/rooms/${roomCode}`);
   }
 
   async function handleThemeChange() {
@@ -99,15 +99,15 @@ export function Home() {
             <footer>
               <ul>
                 <li>
-                  <a href="https://iconscout.com/icons/moon" target="_blank">Moon Icon</a> by <a href="https://iconscout.com/contributors/oviyan">Amoghdesign</a>
+                  <a href="https://iconscout.com/icons/moon" target="_blank" rel="noreferrer">Moon Icon</a> by <a href="https://iconscout.com/contributors/oviyan">Amoghdesign</a>
                 </li>
                 |
                 <li>
-                  <a href="https://iconscout.com/icons/bright" target="_blank">Bright Icon</a> by <a href="https://iconscout.com/contributors/chamedesign">Chamestudio</a>
+                  <a href="https://iconscout.com/icons/bright" target="_blank" rel="noreferrer">Bright Icon</a> by <a href="https://iconscout.com/contributors/chamedesign">Chamestudio</a>
                 </li>
                 |
                 <li>
-                  <a href="https://iconscout.com/icons/chat" target="_blank">Chat Icon</a> by <a href="https://iconscout.com/contributors/irfansusanto98" target="_blank">Barudak Lier</a>
+                  <a href="https://iconscout.com/icons/chat" target="_blank" rel="noreferrer">Chat Icon</a> by <a href="https://iconscout.com/contributors/irfansusanto98" target="_blank" rel="noreferrer">Barudak Lier</a>
                 </li>
               </ul>
             </footer>
