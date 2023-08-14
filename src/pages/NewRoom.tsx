@@ -1,4 +1,4 @@
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FormEvent, useState } from 'react';
 
 import illustrationImg from '../assets/images/illustration.svg';
@@ -21,7 +21,7 @@ import nightModeImg from '../assets/images/night-mode.svg'
 
 export function NewRoom() {
   const { user } = useAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [ newRoom, setNewRoom ] = useState(' ');
   const { theme, switchTheme, logo } = useTheme();
 
@@ -38,7 +38,7 @@ export function NewRoom() {
       authorId: user?.id,
     });
 
-    history.push(`/rooms/${firebaseRoom.key}`);
+    navigate(`/rooms/${firebaseRoom.key}`);
   };
 
   async function handleThemeChange() {

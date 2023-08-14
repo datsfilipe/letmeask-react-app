@@ -1,4 +1,6 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { ThemeContextProvider } from './contexts/ThemeContext';
 import { Theme } from './components/Theme/index';
@@ -9,23 +11,33 @@ import { Room } from './pages/Room';
 import { AuthContextProvider } from './contexts/AuthContext';
 import { AdminRoom } from './pages/AdminRoom';
 
-function App() {
-  return (
-    <BrowserRouter>
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/rooms/new',
+    element: <NewRoom />,
+  },
+  {
+    path: '/rooms/:id',
+    element: <Room />,
+  },
+  {
+    path: '/admin/rooms/:id',
+    element: <AdminRoom />,
+  }
+])
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
       <AuthContextProvider>
         <ThemeContextProvider>
           <Theme>
-            <Switch>
-              <Route path="/" exact component={Home}/>
-              <Route path="/rooms/new" component={NewRoom} />
-              <Route path="/rooms/:id" component={Room} />
-              <Route path="/admin/rooms/:id" component={AdminRoom} />
-            </Switch>
+            <RouterProvider router={router}/>
           </Theme>
         </ThemeContextProvider>
       </AuthContextProvider>
-    </BrowserRouter>
-  );
-}
-
-export default App;
+  </React.StrictMode>
+);
